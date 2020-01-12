@@ -1,0 +1,28 @@
+https://code-daniel.tistory.com/135
+https://tyle.io/blog/160
+
+https://devstarsj.github.io/development/2019/05/19/mobx-state-tree.usage/
+
+nginx cors
+http://www.gisdeveloper.co.kr/?p=4949
+https://sub0709.blogspot.com/2019/05/nginx-cross-origin.html
+
+
+파워쉘
+https://ko.atmet.org/fix-access-registry-key-is-denied-error-when-setting-policy
+get-ExecutionPolicy
+Set-ExecutionPolicy RemoteSigned
+
+npm install
+
+npm install pm2 -g
+
+포트확인
+netstat -anp tcp | findstr 3000
+
+Get-process
+
+TASKKILL /PID 6224 /PID 4716 /T
+
+--제이쿼리 자동완성
+npm i @types/jquery

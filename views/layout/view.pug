@@ -1,0 +1,15 @@
+extends ./layout/board.pug
+
+block title
+	.jumbotron.my-2
+		h2= title
+			small - 게시글 상세보기 입니다.
+
+block content
+    .boarder.boarder-primary.rounded.p-3
+        b= data.title
+    .boarder.boarder-primary.rounded.p-3.my-3= data.content
+    .p-3.text-center
+        button.btn.btn-primary#btUpdate(data-id=`${data.id}`) 수정
+        button.btn.btn-danger#btDelete(data-id=`${data.id}`) 삭제
+        button.btn.btn-success#btList 리스트

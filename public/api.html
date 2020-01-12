@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API Board</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/board.css">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotoron">
+            <h2 id="title"></h2>
+        </div>
+        <form class="border border-secondary p-2">
+            <input type="hidden" name="id" value="">
+            <div class="py-2 form-inline">
+                <span>작성자:</span>
+                <input type="text" name="writer" class="form-control">
+            </div>
+            <div class="py-2 form-inline">
+                <span>제목</span>
+                <input type="text" name="title" class="form-control">
+            </div>
+            <div class="py-2">
+                <textarea name="content" id="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <div class="text-center py-2"><button class="btn btn-primary" id="btSave">저장</button></div>
+            <div class="text-center py-2"><button class="btn btn-primary" type="reset">다시작성</button></div>
+        </form>
+    
+        <table class="table table-boardered my-3" id="listTb">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="./js/board-api.js"></script>
+</body>
+</html>
