@@ -33,3 +33,9 @@ git config user.email "weare0012@naver.com"
 
 https://github.com/sincelife/2020-kn-node2-pug/
 https://github.com/sincelife/2020-kn-node2-pug
+
+git remote -v origin  https://github.com/sincelife/2020-kn-node2-pug
+git remote set-url origin https://github.com/sincelife/2020-kn-node2-pug
+
+
+git remote add origin https://github.com/sincelife/2020-kn-node2-pug
