@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool, sqlErr } = require("../modules/mysql-conn");
 
-router.get(["/get", "/get/:id"], async (req, res) => {
+router.get(["/", "/get", "/get/:id"], async (req, res) => {
     let sql = '';
     const vals = {
         title: "API 게시판"

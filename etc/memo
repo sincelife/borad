@@ -27,9 +27,11 @@ TASKKILL /PID 6224 /PID 4716 /T
 --제이쿼리 자동완성
 npm i @types/jquery
 
-git config --global user.name "sincelife"
-git config --global user.email "arlandzzz4@gmail.com"
+git config --local user.name "sincelife"
+git config --local user.email "arlandzzz4@gmail.com"
 git config user.email "weare0012@naver.com"
+
+https://github.com/sincelife/borad
 
 https://github.com/sincelife/2020-kn-node2-pug/
 https://github.com/sincelife/2020-kn-node2-pug
@@ -39,3 +41,13 @@ git remote set-url origin https://github.com/sincelife/2020-kn-node2-pug
 
 
 git remote add origin https://github.com/sincelife/2020-kn-node2-pug
+
+
+git init
+
+--사용자 정보 확인 가능
+git config --list
+
+git remote
+
+--heide
