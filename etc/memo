@@ -45,9 +45,22 @@ git remote add origin https://github.com/sincelife/2020-kn-node2-pug
 
 git init
 
---사용자 정보 확인 가능
+sincelife d2d!
+--사용자 정보 확인 가능 /// 자격증명
 git config --list
 
 git remote
 
+git push --set-upstream origin master
+
 --heide
+
+-g
+-S
+-D
+
+-g
+sequelize
+sequelize-cli
+
+sequelize init

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const datetime = require('date-time');
 const { pool, sqlErr } = require('../modules/mysql-conn');
+const { upload } = require('../modules/multer-conn');
 
 router.get(["/", "/:page"], async (req, res) => {
 	let page = req.params.page ? req.params.page : "list";
@@ -12,13 +14,15 @@ router.get(["/", "/:page"], async (req, res) => {
 			const connect = await pool.getConnection();
 			const result = await connect.query(sql);
 			vals.lists = result[0];
-			/*
-			vals.lists = [
-				{id:1, title: "첫번째 글", writer: "관리자", wdate: "2020-01-03", rnum: 5},
-				{id:2, title: "두번째 글", writer: "관리자2", wdate: "2020-01-04", rnum: 6},
-				{id:3, title: "세번째 글", writer: "관리자3", wdate: "2020-01-05", rnum: 4},
-			];
-			*/
+			for(let v of result[0]){
+				if(v.realfile)
+					v.fileIcon = true;
+			}
+			const resultData = result[0].map((v)=>{
+				v.wdate = datetime(v.wdate);
+				return v;
+			});
+			vals.lists = resultData;
 			connect.release();
 			res.render("list.pug", vals);
 			break;
@@ -48,6 +52,17 @@ router.get("/view/:id", async (req, res) => {
 
 	vals.data = result[0][0];
 	connect.release();
+	if(vals.data.realfile){
+		let file = vals.data.realfile.split("-");
+		let filepath = "/uploads/" + file[0] + "/"+vals.data.realfile;
+		vals.data.filepath = filepath;
+		let img = ['.jpg','.jpeg','.gif','.png'];
+		let ext = path.extname(vals.data.realfile).toLowerCas();
+		if(img.indexOf(ext) > -1) vals.data.fileChk = "img";
+		else vals.data.fileChk = "file";
+	}else{
+		vals.data.fileChk = "";
+	}
 	res.render("view.png", vals);
 })
 
@@ -96,12 +111,32 @@ router.post("/update", async (req, res) => {
 	}
 })
 
-router.post("/create", async (req, res) => {
-	let sql = "INSERT INTO board SET title=?, writer=?, wdate=?, content=?";
-	let val = [req.body.title, req.body.writer, new Date(), req.body.content];
+router.post("/create", upload.single("upfile"), async (req, res) => {
+	let oriFile='';
+	let realFile='';
+	if(rea.file){
+		oriFile=req.file.originalname;
+		realFile=req.file.fieldname;
+	}
+	let sql = "INSERT INTO board SET title=?, writer=?, wdate=?, content=?, orifile=?, realfile=?";
+	let val = [req.body.title, req.body.writer, new Date(), req.body.content, oriFile, realFile];
+
 	const connect = await pool.getConnection();
 	const result = await connect.query(sql, val);
+	//req.fileUploadChk;
 	connect.release();
 	res.redirect("/pug");
 });
+
+router.get("/download/:id", async (req,res) =>{
+	let id = req.params.id;
+	let sql = "SELECT realfile, orifile FROM board WHERE id="+id;
+
+	const connect = await pool.getConnection();
+	const result = await connect.query(sql);
+	connect.release();
+	let filepath = path.join(__dirname, "../upload", result[0][0].realfile.split("-")[0]);
+	let file = filepath + "/" + result[0][0].realfile;
+	res.download(file, result[0][0].orifile);
+})
 module.exports = router;
