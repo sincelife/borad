@@ -64,3 +64,36 @@ sequelize
 sequelize-cli
 
 sequelize init
+-mysql / db관련
+
+gitbash
+express 폴더명
+
+npm i
+npm i dotenv
+require('dotenv').config(); --bin
+
+------------------------------
+npm i -g express-generator
+npm i -g sequelize-cli
+
+gitbash
+express --view=pug 폴더명
+
+npm i
+npm i sequelize mysql2
+sequelize init
+
+npm i rotating-file-stream
+npm i dotenv
+------------------------------
+Model설정
+
+app.js -- sequelize설정
+
+routes
+
+npm i method-override
+
+--버전에 문제 있을 때.
+npm audit fix
